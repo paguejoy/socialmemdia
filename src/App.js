@@ -1,12 +1,9 @@
-import axios from 'axios'
+
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import {
-  createBrowserRouter,
-  RouterProvider,
   Route,
   Outlet,
-  Navigate,
   BrowserRouter,
   Routes,
 } from "react-router-dom";
@@ -16,7 +13,7 @@ import RightBar from "./components/rightBar/RightBar";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import "./style.scss";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext, AuthContextProvider } from "./context/authContext"; 
 import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
@@ -41,11 +38,6 @@ function App() {
   };
 
   
-
-  // useEffect(() => {
-  //   const result = axios.get(`http://localhost:5000/api/${user.id}`)
-  //   console.log(result)
-  // })
   return (
     <AuthContextProvider value={{user, setUser}}>
       <BrowserRouter>
@@ -56,6 +48,7 @@ function App() {
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/update' element={<UpdateProfile/>}/>
+          <Route path='/update' element={<Profile/>}/>
           <Route path='*' element={<Register/>}/>
         </Routes>
       </BrowserRouter>
