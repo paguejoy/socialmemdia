@@ -17,7 +17,7 @@ const Login = () => {
     if(!user.isLoggedIn){
       console.log('if codeblock')
 
-        const existingUser = await fetch('http://localhost:5000/api/login', {
+        const existingUser = await fetch('https://socialmedia-server-six.vercel.app/api/login', {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

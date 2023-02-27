@@ -19,7 +19,7 @@ export default function UpdateProfile(){
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(formData);
-        const url = `http://localhost:5000/api/profilephoto-upload/${localStorage.getItem('id')}`
+        const url = `https://socialmedia-server-six.vercel.app/api/profilephoto-upload/${localStorage.getItem('id')}`
         try{
             axios.post(url, formData, {
                 headers: {

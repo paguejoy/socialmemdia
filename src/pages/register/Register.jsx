@@ -17,7 +17,7 @@ const Register = () => {
     e.preventDefault();
     
     if(!user.isLoggedIn){
-        const newUser = await fetch('https://socialmedia-server-ws6f.vercel.app/api', {
+        const newUser = await fetch('https://socialmedia-server-six.vercel.app/api', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
