@@ -8,7 +8,10 @@ export const AuthContextProvider = ({ children }) => {
     name: "",
     email: "",
     password: "",
-    profilePic: "https://res.cloudinary.com/mytrainingschool/image/upload/v1661717512/ef0igyp7wj1zmwaqtyc0.jpg",
+    profilePic: {
+      public_id: "",
+      secure_url: ""
+    },
     isLoggedIn: false
   })
 

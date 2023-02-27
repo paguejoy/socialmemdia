@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import {
@@ -15,12 +16,13 @@ import RightBar from "./components/rightBar/RightBar";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import "./style.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext, AuthContextProvider } from "./context/authContext"; 
+import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
 
 function App() {
-
+  const { user, setUser } = useContext(AuthContext);
   const { darkMode } = useContext(DarkModeContext);
 
   const Layout = () => {
@@ -38,45 +40,14 @@ function App() {
     );
   };
 
-  // const ProtectedRoute = ({ children }) => {
-  //   if (!currentUser) {
-  //     return <Navigate to="/login" />;
-  //   }
+  
 
-  //   return children;
-  // };
-
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: (
-  //       // <ProtectedRoute>
-  //         <Layout />
-  //       // </ProtectedRoute>
-  //     ),
-  //     children: [
-  //       {
-  //         path: "/",
-  //         element: <Home />,
-  //       },
-  //       {
-  //         path: "/profile/:id",
-  //         element: <Profile />,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     path: "/login",
-  //     element: <Login />,
-  //   },
-  //   {
-  //     path: "/register",
-  //     element: <Register />,
-  //   },
-  // ]);
-
+  // useEffect(() => {
+  //   const result = axios.get(`http://localhost:5000/api/${user.id}`)
+  //   console.log(result)
+  // })
   return (
-    <AuthContextProvider>
+    <AuthContextProvider value={{user, setUser}}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout/>}>
@@ -84,6 +55,7 @@ function App() {
           </Route>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/update' element={<UpdateProfile/>}/>
           <Route path='*' element={<Register/>}/>
         </Routes>
       </BrowserRouter>

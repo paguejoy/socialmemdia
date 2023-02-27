@@ -14,19 +14,25 @@ import Courses from "../../assets/12.png";
 import Fund from "../../assets/13.png";
 import { AuthContext } from "../../context/authContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LeftBar = () => {
 
   const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate()
 
+  const handleClick = () => {
+    navigate('/update')
+  }
   return (
     <div className="leftBar">
       <div className="container">
         <div className="menu">
           <div className="user">
             <img
-              src={user.profilePic}
+              src={user.profilePic.secure_url}
               alt=""
+              onClick={handleClick}
             />
             <span>{user.name}</span>
           </div>

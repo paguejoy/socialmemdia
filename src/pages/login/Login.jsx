@@ -17,7 +17,7 @@ const Login = () => {
     if(!user.isLoggedIn){
       console.log('if codeblock')
 
-        const existingUser = await fetch('https://socialmedia-server-ws6f.vercel.app/api/login', {
+        const existingUser = await fetch('http://localhost:5000/api/login', {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -28,13 +28,19 @@ const Login = () => {
         })
         .then(response => response.json())
         console.log(existingUser)
+
+        localStorage.setItem('id', existingUser._id)
+        localStorage.setItem('isLoggedIn', true)
       
       setUser({
         id: existingUser._id,
         name: existingUser.name,
         email: existingUser.email,
         password: existingUser.password,
-        profilePic: "https://res.cloudinary.com/mytrainingschool/image/upload/v1661717512/ef0igyp7wj1zmwaqtyc0.jpg",
+        profilePic: {
+          public_id: "",
+          secure_url: ""
+        },
         isLoggedIn: true
       })
 
